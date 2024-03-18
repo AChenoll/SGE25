@@ -1,5 +1,5 @@
 export const environment = {
   production: true
 };
-export const URL_API = 'https://app.radfpd.es/api/private';
-export const URL_BASE = 'https://app.radfpd.es';
+export const URL_BASE = 'http://143.47.49.8/dev';
+export const URL_API = `${URL_BASE}/api/private`;
