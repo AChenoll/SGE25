@@ -30,12 +30,12 @@ export class UnidadesDualComponent implements OnInit {
 
   idUnidadDualFilter = new FormControl();
   unidadDualFilter = new FormControl();
-  observacionesFilter= new FormControl();
+  observacionesUnidadDualFilter = new FormControl(); // Añado el filtro para las observaciones
 
   permises: Permises;
 
   displayedColumns: string[];
-  private filterValues = { id_unidad_dual: '', unidad_dual: '', observaciones: '' };
+  private filterValues = { id_unidad_dual: '', unidad_dual: '', observaciones: '' }; // Añado la columna 'observaciones'
 
   constructor(
     public dialog: MatDialog,
@@ -106,7 +106,7 @@ export class UnidadesDualComponent implements OnInit {
 
       return unidadDual.id_unidad_dual.toString().indexOf(searchTerms.id_unidad_dual) !== -1
         && unidadDual.unidad_dual.toLowerCase().indexOf(searchTerms.unidad_dual.toLowerCase()) !== -1
-        && (unidadDual.observaciones||'').toLowerCase().indexOf(searchTerms.observaciones.toLowerCase()) !== -1;
+        && unidadDual.observaciones.toLowerCase().indexOf(searchTerms.observaciones.toLowerCase()) !== -1; // Nueva linea para el filtro
     };
 
     return filterFunction;
@@ -125,7 +125,7 @@ export class UnidadesDualComponent implements OnInit {
           this.dataSource.filter = JSON.stringify(this.filterValues);
       });
 
-      this.observacionesFilter.valueChanges
+      this.observacionesUnidadDualFilter.valueChanges  // Nueva linea para las observaciones
       .subscribe(value => {
           this.filterValues.observaciones = value;
           this.dataSource.filter = JSON.stringify(this.filterValues);

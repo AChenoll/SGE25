@@ -30,12 +30,12 @@ export class FamiliasComponent implements OnInit {
 
   idFamiliaFilter = new FormControl();
   familiaFilter = new FormControl();
-  codFamiliaFilter=new FormControl();
+  codFamiliaFilter = new FormControl(); // Nueva variable para el filtro
 
   permises: Permises;
 
   displayedColumns: string[];
-  private filterValues = { id_familia: '', cod_familia:'', familia: ''};
+  private filterValues = { id_familia: '', familia: '', cod_familia: '' }; // Nuevo valor de codigo de familia para el filtro
 
   constructor(
     public dialog: MatDialog,
@@ -54,7 +54,7 @@ export class FamiliasComponent implements OnInit {
 
     if (RESPONSE.ok) {
       this.familiasService.familia = RESPONSE.data as Familia[];
-      this.displayedColumns = ['id_familia', 'cod_familia', 'familia', 'actions'];
+      this.displayedColumns = ['id_familia', 'familia', 'cod_familia', 'actions']; // Añado la nueva columna de codigo de familia
       this.dataSource.data = this.familiasService.familia;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -105,7 +105,7 @@ export class FamiliasComponent implements OnInit {
 
       return familia.id_familia.toString().indexOf(searchTerms.id_familia) !== -1
         && familia.familia.toLowerCase().indexOf(searchTerms.familia.toLowerCase()) !== -1
-        && (familia.cod_familia.toLowerCase()||'').indexOf(searchTerms.cod_familia.toLowerCase()) !== -1;
+        && familia.cod_familia.toLowerCase().indexOf(searchTerms.cod_familia.toLowerCase()) !== -1; // Nueva linea para el filtro de codigo de familia
     };
 
     return filterFunction;
@@ -118,18 +118,17 @@ export class FamiliasComponent implements OnInit {
         this.dataSource.filter = JSON.stringify(this.filterValues);
     });
 
-    this.codFamiliaFilter.valueChanges
-    .subscribe(value => {
-        this.filterValues.cod_familia = value;
-        this.dataSource.filter = JSON.stringify(this.filterValues);
-    });
-
-
     this.familiaFilter.valueChanges
     .subscribe(value => {
         this.filterValues.familia = value;
         this.dataSource.filter = JSON.stringify(this.filterValues);
     });
+
+    this.codFamiliaFilter.valueChanges
+    .subscribe(value => {
+        this.filterValues.cod_familia = value;
+        this.dataSource.filter = JSON.stringify(this.filterValues);
+    }); // Nuevo filtro para los codigos de familia
   }
 
 }
