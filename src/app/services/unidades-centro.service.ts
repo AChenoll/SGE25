@@ -29,12 +29,12 @@ export class UnidadesCentroService {
     return this.http.post<ApiResponse>(`${URL_API}/${ENDPOINT}.php`, body, { headers: this.commonService.headers });
   }
 
-  editUnidad(unidad_centro: UnidadesCentro) {
+  editUnidadCentro(unidad_centro: UnidadesCentro) {
     const body = JSON.stringify(unidad_centro);
     return this.http.put<ApiResponse>(`${URL_API}/${ENDPOINT}.php`, body, { headers: this.commonService.headers });
   }
 
-  deleteUnidad(id: number|string) {
-    return this.http.delete<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id=${id}`, {headers: this.commonService.headers });
+  deleteUnidadCentro(unidad_centro: UnidadesCentro) {
+    return this.http.delete<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id=${unidad_centro.id_unidad_centro}`, {headers: this.commonService.headers });
   }
 }
