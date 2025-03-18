@@ -12,6 +12,7 @@ const ENDPOINT = 'unidad_centro';
 })
 export class UnidadesCentroService {
 
+  unidadesCentro: UnidadesCentro;
   unidadCentro: UnidadesCentro[];
 
   constructor(private http: HttpClient, private commonService: CommonService) { }
@@ -36,5 +37,17 @@ export class UnidadesCentroService {
 
   deleteUnidadCentro(unidad_centro: UnidadesCentro) {
     return this.http.delete<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id=${unidad_centro.id_unidad_centro}`, {headers: this.commonService.headers });
+  }
+
+  setUnidadCentro(unidad_centro: UnidadesCentro) {
+    this.unidadesCentro = unidad_centro;
+  }
+
+  setDatosUnidadCentro(formUnidadCentro: any) {
+    this.unidadesCentro.id_unidad_centro = formUnidadCentro.id_unidad_centro;
+    this.unidadesCentro.unidad_centro = formUnidadCentro.unidad_centro;
+    this.unidadesCentro.id_ciclo = formUnidadCentro.id_ciclo;
+    this.unidadesCentro.ciclo = formUnidadCentro.ciclo;
+    this.unidadesCentro.observaciones = formUnidadCentro.observaciones;
   }
 }

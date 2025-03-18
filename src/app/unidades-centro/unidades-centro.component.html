@@ -34,13 +34,19 @@
             </mat-icon>
           </button>
         </th>
-        <td mat-cell *matCellDef="let unidades">
+        <td mat-cell *matCellDef="let unidadCentro">
+          <button mat-icon-button (click)="fichaUnidadCentro(unidadCentro)">
+            <mat-icon>
+                assignment
+            </mat-icon>
+          </button>
+        <!-- <td mat-cell *matCellDef="let unidades">
           <button mat-icon-button (click)="editUnidadCentro(unidades)">
             <mat-icon>
               mode_edit
             </mat-icon>
-          </button>
-          <button mat-icon-button (click)="deleteUnidadCentro(unidades)">
+          </button> -->
+          <button mat-icon-button (click)="deleteUnidadCentro(unidadCentro)">
             <mat-icon>
               delete
             </mat-icon>

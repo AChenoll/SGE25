@@ -12,6 +12,7 @@ import { Overlay } from '@angular/cdk/overlay';
 import { AddUnidadCentroComponent } from './add-unidad-centro/add-unidad-centro.component';
 import { EditUnidadCentroComponent } from './edit-unidad-centro/edit-unidad-centro.component';
 import { DeleteUnidadCentroComponent } from './delete-unidad-centro/delete-unidad-centro.component';
+import { FichaUnidadCentroComponent } from './ficha-unidad-centro/ficha-unidad-centro.component';
 
 @Component({
   selector: 'app-unidades-centro',
@@ -126,6 +127,23 @@ export class UnidadesCentroComponent implements OnInit {
       this.filterValues.id_ciclo = value;
       this.dataSource.filter = JSON.stringify(this.filterValues);
     });
+  }
+
+  async fichaUnidadCentro( unidadCentro: UnidadesCentro ) {
+    const UNIDAD_CENTRO = unidadCentro;
+
+    if(UNIDAD_CENTRO){
+      const dialogRef = this.dialog.open(FichaUnidadCentroComponent, {
+        width: '90%',
+        maxWidth: '90%',
+        scrollStrategy: this.overlay.scrollStrategies.noop(),
+        disableClose: true,
+        data: UNIDAD_CENTRO
+      });
+
+      const RESULT = await dialogRef.afterClosed().toPromise();
+      await this.getUnidadesCentro();
+    }
   }
 
 }
