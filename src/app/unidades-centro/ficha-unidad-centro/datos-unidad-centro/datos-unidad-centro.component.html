@@ -10,12 +10,8 @@
     </div>
 
     <div class="form">
-      <mat-form-field>
-        <mat-select formControlName="id_ciclo" placeholder="Nombre Ciclo">
-          <mat-option *ngFor="let ciclo of ciclos" [value]="ciclo.id_ciclo">
-            {{ ciclo.ciclo }}
-          </mat-option>
-        </mat-select>
+      <mat-form-field color="accent">
+        <input matInput placeholder="ID Ciclo" formControlName="id_ciclo" name="id_ciclo" maxlength="100" required>
       </mat-form-field>
     </div>
 
